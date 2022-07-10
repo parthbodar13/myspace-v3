@@ -3,10 +3,9 @@ package com.myspace.commonservice.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "designation", uniqueConstraints = @UniqueConstraint(columnNames = "unique_designation_name", name = "designationName"))
+@Table(name = "designation")
 public class DesignationEntity extends BaseEntity {
 
 	/**
@@ -14,7 +13,7 @@ public class DesignationEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -7505052930722396558L;
 
-	@Column(name = "designation_name", nullable = false)
+	@Column(name = "designation_name", nullable = false, unique = true)
 	private String designationName;
 
 	public DesignationEntity() {

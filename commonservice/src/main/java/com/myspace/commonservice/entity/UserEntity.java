@@ -3,11 +3,10 @@ package com.myspace.commonservice.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "unique_username", name = "username"))
+@Table(name = "user")
 public class UserEntity extends BaseEntity {
 
 	/**
@@ -15,9 +14,9 @@ public class UserEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -7982000460615414033L;
 
-	@Column(name = "username", nullable = false)
+	@Column(name = "username", nullable = false, unique = true)
 	@Size(min = 6, max = 100)
-	private String username;
+	private String userName;
 
 	@Column(name = "password")
 	@Size(min = 8, max = 100)
@@ -36,21 +35,22 @@ public class UserEntity extends BaseEntity {
 		super();
 	}
 
-	public UserEntity(String username, String password, String firstName, String middleName, String lastName) {
+	public UserEntity(@Size(min = 6, max = 100) String userName, @Size(min = 8, max = 100) String password,
+			String firstName, String middleName, String lastName) {
 		super();
-		this.username = username;
+		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
