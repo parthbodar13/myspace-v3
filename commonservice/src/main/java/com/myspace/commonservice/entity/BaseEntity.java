@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
@@ -21,38 +22,38 @@ public class BaseEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "id", nullable = false, updatable = false)
+	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
-	
-	@Column (name = "createdBy")
+
+	@Column(name = "created_by", updatable = false)
 	private UserEntity createdBy;
-	
-	@Column (name = "createdOn")
+
+	@Column(name = "created_at", updatable = false)
 	@CreationTimestamp
-	private ZonedDateTime createdOn;
-	
-	@Column (name = "updatedBy")
+	private ZonedDateTime createdAt;
+
+	@Column(name = "updated_by")
 	private UserEntity updatedBy;
-	
-	@Column (name = "updatedOn")
-	@CreationTimestamp
-	private ZonedDateTime updatedOn;
-	
-	@Column (name = "enabled", columnDefinition = "tinyint(1) default 1")
-	private Boolean enabled;
+
+	@Column(name = "updated_At")
+	@UpdateTimestamp
+	private ZonedDateTime updatedAt;
+
+	@Column(name = "enabled", columnDefinition = "tinyint(1) default 1")
+	private Boolean enabled = true;
 
 	public BaseEntity() {
 		super();
 	}
 
-	public BaseEntity(Long id, UserEntity createdBy, ZonedDateTime createdOn, UserEntity updatedBy,
-			ZonedDateTime updatedOn, boolean enabled) {
+	public BaseEntity(Long id, UserEntity createdBy, ZonedDateTime createdAt, UserEntity updatedBy,
+			ZonedDateTime updatedAt, Boolean enabled) {
 		super();
 		this.id = id;
 		this.createdBy = createdBy;
-		this.createdOn = createdOn;
+		this.createdAt = createdAt;
 		this.updatedBy = updatedBy;
-		this.updatedOn = updatedOn;
+		this.updatedAt = updatedAt;
 		this.enabled = enabled;
 	}
 
@@ -72,12 +73,12 @@ public class BaseEntity implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public ZonedDateTime getCreatedOn() {
-		return createdOn;
+	public ZonedDateTime getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreatedOn(ZonedDateTime createdOn) {
-		this.createdOn = createdOn;
+	public void setCreatedAt(ZonedDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public UserEntity getUpdatedBy() {
@@ -88,21 +89,20 @@ public class BaseEntity implements Serializable {
 		this.updatedBy = updatedBy;
 	}
 
-	public ZonedDateTime getUpdatedOn() {
-		return updatedOn;
+	public ZonedDateTime getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdatedOn(ZonedDateTime updatedOn) {
-		this.updatedOn = updatedOn;
+	public void setUpdatedAt(ZonedDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
-	public boolean isEnabled() {
+	public Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	
+
 }

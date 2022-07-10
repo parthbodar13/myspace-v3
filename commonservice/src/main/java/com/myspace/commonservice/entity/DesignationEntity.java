@@ -4,23 +4,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table (name = "Designation", uniqueConstraints = @UniqueConstraint(columnNames = "designationName", name = "designationName"))
-public class DesignatioEntity extends BaseEntity {
+@Table(name = "designation", uniqueConstraints = @UniqueConstraint(columnNames = "unique_designation_name", name = "designationName"))
+public class DesignationEntity extends BaseEntity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7505052930722396558L;
 
-	@Column (name = "designationName", nullable = false)
-	@Size (min = 6, max = 100)
+	@Column(name = "designation_name", nullable = false)
 	private String designationName;
 
-	public DesignatioEntity() {
+	public DesignationEntity() {
 		super();
+	}
+
+	public DesignationEntity(String designationName) {
+		super();
+		this.designationName = designationName;
 	}
 
 	public String getDesignationName() {
@@ -31,14 +34,4 @@ public class DesignatioEntity extends BaseEntity {
 		this.designationName = designationName;
 	}
 
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
 }

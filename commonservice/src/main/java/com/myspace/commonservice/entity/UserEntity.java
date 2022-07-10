@@ -7,7 +7,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table (name = "User", uniqueConstraints = @UniqueConstraint(columnNames = "username", name = "username"))
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "unique_username", name = "username"))
 public class UserEntity extends BaseEntity {
 
 	/**
@@ -15,21 +15,21 @@ public class UserEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = -7982000460615414033L;
 
-	@Column (name = "username",nullable = false)
+	@Column(name = "username", nullable = false)
 	@Size(min = 6, max = 100)
 	private String username;
 
-	@Column (name = "password")
+	@Column(name = "password")
 	@Size(min = 8, max = 100)
 	private String password;
-	
-	@Column (name = "firstName")
+
+	@Column(name = "first_name", nullable = false, length = 100)
 	private String firstName;
-	
-	@Column (name = "middleName")
+
+	@Column(name = "middle_name", nullable = false, length = 100)
 	private String middleName;
-	
-	@Column (name = "lastName")
+
+	@Column(name = "last_name", nullable = false, length = 100)
 	private String lastName;
 
 	public UserEntity() {
@@ -84,5 +84,5 @@ public class UserEntity extends BaseEntity {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 }
