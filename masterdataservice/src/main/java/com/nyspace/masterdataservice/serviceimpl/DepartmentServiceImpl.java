@@ -1,5 +1,7 @@
 package com.nyspace.masterdataservice.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 		departmentDAO.save(departmentEntity);
 		return "Department Saved Successfully";
 	}
+
+	@Override
+	public List<DepartmentEntity> getDepartment() {
+
+		return departmentDAO.findAll();
+	}
+
+
 
 }
